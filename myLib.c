@@ -12,7 +12,9 @@ BANANA b[5]; // Banana Structs
 enum GBAState {
 	START,
 	LEVEL1,
+	PAUSE1,
 	LEVEL2,
+	PAUSE2,
 	LEVEL3,
 	WIN,
 	GAMEOVER
@@ -162,7 +164,8 @@ int play(int state) {
 	// number of bananas to obtain for level 3
 	int bananaNum = 5;
 
-	// draw top marios
+	//draw top marios
+
 	for (int i = 0; i < 5; i++) {
 		top[i].r = 35;
 		top[i].oldr = 35;
@@ -175,6 +178,8 @@ int play(int state) {
 		bot[i].oldr = 25 + 120 - 15;
 		drawImage3(25 + 120 - 15, 50 + i * 40, 15, 15, mario);
 	}
+	
+	
 
 	while(1) {
 		waitForVblank();
@@ -202,7 +207,6 @@ int play(int state) {
 			}
 		}
 
-		//move the marios starting at the top down and up
 		if (topb) {
 			for (int i = 0; i < 5; i++) {
 				top[i].oldr = top[i].r++;
@@ -217,7 +221,7 @@ int play(int state) {
 			}
 		}
 		if (top[0].r + 15 == 145) {
-				topb = 0;
+			topb = 0;
 		} else if (top[0].r == 35) {
 			topb = 1;
 		}
@@ -241,6 +245,9 @@ int play(int state) {
 		} else if (bot[0].r + 15 == 145) {
 			botb = 1;
 		}
+
+		
+		
 
 		// Go back to title screen
 		if (KEY_DOWN_NOW(BUTTON_SELECT)) {
@@ -272,15 +279,19 @@ int play(int state) {
 			// If you touch the green area without these requirements, you lose.
 			if (donk.c + 15 > 210) { 
 				if (state == LEVEL1) {
-					return LEVEL2;
+					return PAUSE1;
+					//return LEVEL2;
 				} else if (state == LEVEL2) { 
 					if (b1) {
-						return LEVEL3;
+						return PAUSE2;
+						//return LEVEL3;
 					} else {
 						return GAMEOVER;
 					}
 				} else if (state == LEVEL3) {
 					if (bananaNum == 0) {
+						bananaNum = 5;
+						//return PAUSE3;
 						return WIN;
 					} else {
 						return GAMEOVER;

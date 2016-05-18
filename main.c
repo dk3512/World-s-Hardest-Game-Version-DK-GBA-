@@ -7,12 +7,15 @@
 #include <stdio.h>
 #include "banana.h"
 #include "win.h"
+#include "dkvsmario.h"
 
 //different states of the game
 enum GBAState {
 	START,
 	LEVEL1,
+	PAUSE1,
 	LEVEL2,
+	PAUSE2,
 	LEVEL3,
 	WIN,
 	GAMEOVER
@@ -36,12 +39,26 @@ int main()
 		case START:
 			drawImage3(0, 0, 240, 160, title);
 			state = LEVEL1;
+			//state = LEVEL4;
 			
 			break;
 
 		//Enter Level 1
 		case LEVEL1:
 			if (KEY_DOWN_NOW(BUTTON_START)) {
+				drawLevel(state);
+				state = play(state);
+			}
+			if (KEY_DOWN_NOW(BUTTON_SELECT)) {
+				state = START;
+			}
+			break;
+
+		//Enter Pause Screen 1
+		case PAUSE1:
+			drawImage3(0, 0, 240, 160, dkvsmario);
+			if (KEY_DOWN_NOW(BUTTON_START)) {
+				state = LEVEL2;
 				drawLevel(state);
 				state = play(state);
 			}
@@ -59,6 +76,19 @@ int main()
 			}
 			break;
 
+		//Enter Pause Screen 2
+		case PAUSE2:
+			drawImage3(0, 0, 240, 160, dkvsmario);
+			if (KEY_DOWN_NOW(BUTTON_START)) {
+				state = LEVEL3;
+				drawLevel(state);
+				state = play(state);
+			}
+			if (KEY_DOWN_NOW(BUTTON_SELECT)) {
+				state = START;
+			}
+			break;
+
 		//Enter Level 3
 		case LEVEL3:
 			drawLevel(state);
@@ -67,6 +97,41 @@ int main()
 				state = START;
 			}
 			break;
+
+		// //Enter Pause Screen 3
+		// case PAUSE3:
+		// 	drawImage3(0, 0, 240, 160, dkvsmario);
+		// 	if (KEY_DOWN_NOW(BUTTON_START)) {
+		// 		state = LEVEL4;
+		// 		drawLevel(state);
+		// 		state = play(state);
+		// 	}
+		// 	if (KEY_DOWN_NOW(BUTTON_SELECT)) {
+		// 		state = START;
+		// 	}
+		// 	break;
+
+		// //Enter Level 4
+		// case LEVEL4:
+		// 	drawLevel(state);
+		// 	state = play(state);
+		// 	if (KEY_DOWN_NOW(BUTTON_SELECT)) {
+		// 		state = START;
+		// 	}
+		// 	break;
+
+		// //Enter Pause Screen 4
+		// case PAUSE4:
+		// 	drawImage3(0, 0, 240, 160, dkvsmario);
+		// 	if (KEY_DOWN_NOW(BUTTON_START)) {
+		// 		state = LEVEL4;
+		// 		drawLevel(state);
+		// 		state = play(state);
+		// 	}
+		// 	if (KEY_DOWN_NOW(BUTTON_SELECT)) {
+		// 		state = START;
+		// 	}
+		// 	break;
 
 		//You lost... gameover.
 		case GAMEOVER:

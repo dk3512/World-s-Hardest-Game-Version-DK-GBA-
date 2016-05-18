@@ -4,7 +4,7 @@ Donkey Kong is trying to eat bananas and go back to his home,
 but Mario is always in the way. Avoid Mario and get your bananas and go home!
 
 CONTROLS
-Press Start to start the game.
+Press Start to start the game or move to the next round.
 Press Select to go back to title screen.
 Use the arrow keys to move Donkey Kong.
 

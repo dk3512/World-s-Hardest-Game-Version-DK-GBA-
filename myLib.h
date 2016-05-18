@@ -110,9 +110,9 @@ typedef struct
 typedef struct 
 {
 	int r;
-	//int c;
+	int c;
 	int oldr;
-	//int oldc;
+	int oldc;
 } MARIO;
 
 typedef struct 

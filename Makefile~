@@ -11,12 +11,12 @@ PROGNAME = WorldsHardestGameDKVersion
 
 # The object files you want to compile into your program
 # This should be a space (SPACE!) separated list of .o files
-OFILES = main.o myLib.o title.o gameover.o font.o dk.o mario.o banana.o
+OFILES = main.o myLib.o title.o gameover.o font.o dk.o mario.o banana.o win.o
 
 # The header files you have created.
 # This is necessary to determine when to recompile for files.
 # This should be a space (SPACE!) separated list of .h files
-HFILES = title.h myLib.h gameover.h dk.h mario.h banana.h
+HFILES = title.h myLib.h gameover.h dk.h mario.h banana.h win.h
 
 ################################################################################
 # These are various settings used to make the GBA toolchain work
